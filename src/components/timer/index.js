@@ -7,11 +7,13 @@ export default function Timer({ initial }) {
   useEffect(() => {
     if (count > 0) {
       intervalRef.current = setInterval(() => {
-        setCount((count) => count - 1);
+        setCount((prevState) => {
+          if (prevState === 1) {
+            clearInterval(intervalRef.current);
+          }
+          return prevState - 1;
+        });
       }, 1000);
-    } else {
-    clearInterval(intervalRef.current);
-
     }
     return () => clearInterval(intervalRef.current);
   }, [count]);
