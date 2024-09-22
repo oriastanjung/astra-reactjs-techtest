@@ -10,6 +10,7 @@ export default function Timer({ initial }) {
         setCount((prevState) => {
           if (prevState === 1) {
             clearInterval(intervalRef.current);
+            return 0
           }
           return prevState - 1;
         });
